@@ -51,7 +51,7 @@ editProduct: async (req, res) => {
     const product = req.body;
     product.id = id;
     try {
-        const {affectedRows} = await productsService.editProductForm(product);
+        await productsService.editProductForm(product);
         res.redirect(`/products/${id}`);
     } catch (error) {
         console.log(error);

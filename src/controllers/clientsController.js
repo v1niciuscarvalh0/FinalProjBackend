@@ -46,7 +46,7 @@ const clientsController = {
 
         console.log(client);
         try {
-            const { affectedRows } = await ClientsService.editClientForm(client);
+            await ClientsService.editClientForm(client);
             res.redirect(`/clients/${id}`);
         } catch (error) {
             console.log(error);
