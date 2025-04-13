@@ -1,0 +1,14 @@
+
+
+.center-detail{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px
+}
+
+.btn-group{
+    display: flex;
+    gap: 20px
+}

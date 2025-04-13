@@ -1,0 +1,29 @@
+.striped-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.striped-table thead th{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.striped-table tbody td{
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+.striped-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+.striped-table tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.btn-table {
+    margin: 0;
+}

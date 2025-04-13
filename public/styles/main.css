@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    padding: 0;
+    margin: 0;
+  }
+
+a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;  
+}
+nav {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.products-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #787878;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+  margin: 150px 30px 0 0;
+  padding: 50px 10px;
+}
+
+.row {
+  display: flex;
+  padding: 20px 0;
+}
+
+.btn-add {
+  background-color: #5a9b15;
+}
+
+.btn-save {
+  background-color: rgb(17, 162, 17);
+  margin: 0;
+}
+
+.btn-save:hover {
+  background-color: rgb(22, 199, 22);
+}
+
+.btn-delete {
+  background-color: red;
+}
+
+.text-danger {
+  color: red;
+}
