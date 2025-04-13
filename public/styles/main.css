@@ -95,3 +95,12 @@ nav ul {
 .text-danger {
   color: red;
 }
+
+.card {
+  max-width: 250px;
+  text-align: justify;
+}
+
+.card-header {
+  font-weight: bold;
+}
