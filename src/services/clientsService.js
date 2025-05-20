@@ -1,10 +1,15 @@
 'use strict';
 
 import ClientsModel from '../models/clientsModel.js';
+import cache from '../../configs/cache.js';
+import clientsModel from '../models/clientsModel.js';
+
 
 const ClientsService = {
     getAllClients: async () => {
-        return await ClientsModel.getAllClients();
+        const clients = await ClientsModel.getAllClients();
+        cache.set('clients', clients, 30);
+        return clients;        
     },
     getClientById: async (id) => {
         return await ClientsModel.getClientById(id);
@@ -13,9 +18,11 @@ const ClientsService = {
         return await ClientsModel.create(client);
     },
     editClientForm: async (client) => {
+        cache.del('clients');
         return await ClientsModel.update(client);
     },
     deleteClientForm: async (id) => {
+        cache.del('clients');
         return await ClientsModel.delete(id);
     }
 }

@@ -3,8 +3,9 @@ import express from 'express';
 const router = express.Router();
 import clientsController from '../controllers/clientsController.js';
 import { validateClient } from '../middlewares/validateClient.js';
+import cache from '../middlewares/cache.js';
 
-router.get('/clients', clientsController.index);
+router.get('/clients', cache('clients'), clientsController.index);
 
 router.get('/clients/create',clientsController.getClientForm);
 router.post('/clients/create', validateClient, clientsController.createClient);

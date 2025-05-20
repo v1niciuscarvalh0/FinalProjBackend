@@ -4,7 +4,6 @@ const clientsController = {
     index: async (req, res) => {
         const response = await ClientsService.getAllClients();
 
-        console.log(response);
         res.render('clients', { clients: response });
     },
     getClientForm: async (req, res) => {
@@ -22,7 +21,6 @@ const clientsController = {
     },
     createClient: async (req, res) => {
         const client = req.body;
-        console.log(client);
         try {
             const { insertId } = await ClientsService.createClientForm(client);
             res.redirect(`/clients/${insertId}`);

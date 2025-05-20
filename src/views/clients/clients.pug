@@ -4,7 +4,10 @@ block head
 block content 
     .row
         a(href="/clients/create" class="btn btn-add") Adicionar Cliente
-    -if (clients.length > 0)
+    .row
+        h2 Veio do cache? #{clients.cached? 'SIM' : 'NÃO'}
+
+    -if (clients && clients.length > 0)
         .products-container
             table.striped-table
                 thead 
