@@ -7,6 +7,7 @@ const productsModel = {
     },
     create: async (product) => {
         
+        console.log(product)
         const [result] = await db.execute("INSERT INTO produtos (nome, descricao, preco, data_atualizado) VALUES(?, ?, ?, now())",
             [product.nome, product.descricao, product.preco]);
         return result;

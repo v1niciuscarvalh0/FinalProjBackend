@@ -15,10 +15,9 @@ export function validateProduct(req, res, next) {
         errors.push({ field: 'preco', message: 'Preço inválido' });
     } 
   
-    console.log(req.body);
     
     if (errors.length > 0) {
-        return res.render('productForm', {
+        return res.status(422).json({
             errors: errors,
             product: req.body 
         });

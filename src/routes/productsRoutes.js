@@ -4,14 +4,14 @@ const router = express.Router();
 import productsController from '../controllers/productsController.js'
 import { validateProduct } from '../middlewares/validateProduct.js';
 
-router.get('/products/create',  productsController.getProductForm);
+router.get('/products', productsController.getAllProducts);
+
 router.post('/products/create', validateProduct, productsController.createProduct);
 
 router.get('/products/:id', productsController.getProductById);
 
-router.get('/products/edit/:id', productsController.getProductForm);
-router.post('/products/edit/:id', validateProduct, productsController.editProduct);
+router.put('/products/edit/:id', validateProduct, productsController.editProduct);
 
-router.get('/products/delete/:id', productsController.deleteProduct);
+router.delete('/products/delete/:id', productsController.deleteProduct);
 
 export default router;

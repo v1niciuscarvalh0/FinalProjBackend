@@ -1,9 +1,14 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,20 +16,20 @@ const __dirname = path.dirname(__filename);
 
 // roda servidor
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Express escutando na porta http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Express escutando na porta http://localhost:${process.env.PORT}`);
 });
 
-app.use(express.urlencoded({ extended: true }));
+
 
 // importa rotas
 import indexRoutes from './src/routes/indexRoutes.js';
 import productsRoutes from './src/routes/productsRoutes.js';
 import clientsRouter from './src/routes/clientsRoutes.js';
-
+import authRouter from './src/routes/authRoutes.js';
 
 // usa as rotas
+app.use(authRouter);
 app.use(indexRoutes);
 app.use(clientsRouter);
 app.use(productsRoutes);

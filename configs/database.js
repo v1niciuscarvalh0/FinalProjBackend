@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 // Create the connection to database
