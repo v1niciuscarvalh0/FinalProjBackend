@@ -7,14 +7,14 @@ const authController = {
     
     async tokenGenerate(id) {
 
-        return jwt.sign({ id }, process.env.JWT_SECRET, {
+        return jwt.sign({ "id": id}, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRES_IN,
         })
     },
 
     async invalidateToken(id) {
 
-        const res = await userModel.setUsertoken(id, null)
+        const result = await userModel.setUsertoken(id, null)
         
         if(result.affectedRows === 0) {
             throw Error('Erro ao inválidar token');
@@ -50,9 +50,7 @@ const authController = {
 
     async login(req, res) {
         let { email, password } = req.body;
-        console.log(email, password)
         const user = await userModel.getUserByEmail(email)
-        console.log(user)
 
         if (user.length === 0) {
             return res.status(401).json({ message: 'Usuário não encontrado' })
@@ -65,17 +63,15 @@ const authController = {
             return res.status(401).json({ message: "Senha incorreta" })
         }
         
-        const token = await authController.tokenGenerate(user.id);
-        console.log(token)
+        const token = await authController.tokenGenerate(user[0].id);
+
         await userModel.setUsertoken(user[0].id, token)
-        
         return res.status(200).json({ token });
     }, 
 
     async logout(req, res) {
         try {
             const token = req.headers.authorization?.split(' ')[1];
-            console.log(token)
 
             if (!token) {
                 return res.status(401).json({ mensagem: 'Token não fornecido' });
@@ -83,8 +79,8 @@ const authController = {
 
             // decodifica o token para pegar o ID do usuário
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            console.log('decoded:', decoded)
             authController.invalidateToken(decoded.id);
-
             return res.status(200).json({ mensagem: 'Logout realizado com sucesso' });
         } catch (error) {
             if (error.name === 'TokenExpiredError') {
