@@ -1,5 +1,5 @@
-export function validateClient(req, res, next) {
-    const { nome, sobrenome,email, idade } = req.body;
+function validateClient(req, res, next) {
+    const { nome, sobrenome, email, idade } = req.body;
     const errors = [];
     const idadeInt = parseInt(idade);
 
@@ -7,7 +7,11 @@ export function validateClient(req, res, next) {
         errors.push({ field: 'nome', message: 'Nome é obrigatório' });
     }
 
-    if(!sobrenome || sobrenome.trim() === '') {
+    if (nome && (nome.trim().length < 3 || nome.trim().length > 255)) {
+        errors.push({ field: 'nome', message: 'Nome deve conter entre 3 e 255 caracteres' });
+    }
+
+    if (!sobrenome || sobrenome.trim() === '') {
         errors.push({ field: 'sobrenome', message: 'Sobrenome é obrigatório' });
     }
   
@@ -15,16 +19,15 @@ export function validateClient(req, res, next) {
         errors.push({ field: 'email', message: 'Email inválido' });
     }
   
-    if (!idadeInt || idadeInt < 0 || idadeInt > 120) {
+    if (isNaN(idadeInt) || idadeInt < 0 || idadeInt > 120) {
         errors.push({ field: 'idade', message: 'Idade inválida' });
     }
   
     if (errors.length > 0) {
-        return res.render('clientForm', {
-            errors: errors,
-            client: req.body 
-        });
+        return res.status(400).json({ erro: errors[0].message });
     }
   
     next(); 
 }
+
+module.exports = validateClient;

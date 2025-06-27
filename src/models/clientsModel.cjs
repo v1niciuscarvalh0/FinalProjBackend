@@ -1,5 +1,4 @@
-'use strict';
-import db  from '../../configs/database.js';
+const db = require('../../configs/database.cjs');
 
 const clientsModel = {    
     getAllClients: async () => {
@@ -26,4 +25,4 @@ const clientsModel = {
     }
 }
 
-export default clientsModel;
+module.exports = clientsModel;

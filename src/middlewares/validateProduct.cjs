@@ -1,4 +1,4 @@
-export function validateProduct(req, res, next) {
+function validateProduct(req, res, next) {
     const { nome, descricao, preco } = req.body;
     const errors = [];
   
@@ -10,18 +10,15 @@ export function validateProduct(req, res, next) {
         errors.push({ field: 'descricao', message: 'Descrição é obrigatório' });
     }
   
-  
-    if (!preco || preco.trim() === '' || isNaN(preco) || preco <= 0) {
+    if (!preco || String(preco).trim() === '' || isNaN(preco) || parseFloat(preco) <= 0) {
         errors.push({ field: 'preco', message: 'Preço inválido' });
     } 
   
-    
     if (errors.length > 0) {
-        return res.status(422).json({
-            errors: errors,
-            product: req.body 
-        });
+        return res.status(403).json({ erro: errors[0].message});
     }
   
     next(); 
 }
+
+module.exports = validateProduct;

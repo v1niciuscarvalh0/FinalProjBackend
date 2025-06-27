@@ -1,4 +1,4 @@
-import db from '../../configs/database.js';
+const db = require('../../configs/database.cjs');
 
 const productsModel = {
     getAllProducts: async () => {
@@ -6,8 +6,7 @@ const productsModel = {
         return rows;
     },
     create: async (product) => {
-        
-        console.log(product)
+        console.log(product);
         const [result] = await db.execute("INSERT INTO produtos (nome, descricao, preco, data_atualizado) VALUES(?, ?, ?, now())",
             [product.nome, product.descricao, product.preco]);
         return result;
@@ -25,7 +24,6 @@ const productsModel = {
         const [result] = await db.execute("DELETE FROM produtos WHERE id = ?", [id]);
         return result;
     }
+};
 
-}
-
-export default productsModel;
+module.exports = productsModel;

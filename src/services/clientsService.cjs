@@ -1,9 +1,5 @@
-'use strict';
-
-import ClientsModel from '../models/clientsModel.js';
-import cache from '../../configs/cache.js';
-import clientsModel from '../models/clientsModel.js';
-
+const ClientsModel = require('../models/clientsModel.cjs');
+const cache = require('../../configs/cache.cjs');
 
 const ClientsService = {
     getAllClients: async () => {
@@ -25,6 +21,6 @@ const ClientsService = {
         cache.del('clients');
         return await ClientsModel.delete(id);
     }
-}
+};
 
-export default ClientsService;
+module.exports = ClientsService;

@@ -1,6 +1,4 @@
-'use strict';
-
-import productsModel from '../models/productsModel.js';
+const productsModel = require('../models/productsModel.cjs');
 
 const productsService = {
     getAllProducts: async () => {
@@ -18,6 +16,6 @@ const productsService = {
     deleteProductForm: async (id) => {
         return await productsModel.delete(id);
     }
-}
+};
 
-export default productsService;
+module.exports = productsService;
