@@ -1,8 +1,11 @@
 const productsModel = require('../models/productsModel.cjs');
+const cache = require('../../configs/cache.cjs');
 
 const productsService = {
     getAllProducts: async () => {
-        return await productsModel.getAllProducts();
+        const products = await productsModel.getAllProducts();
+        cache.set('products', products, 30);
+        return products;
     },
     getProductById: async (id) => {
         return await productsModel.getProductById(id);
